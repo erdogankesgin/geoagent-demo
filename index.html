@@ -17,124 +17,217 @@
 
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
+            background: #0a0e27;
+            color: #e4e4e7;
+            overflow: hidden;
         }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
+        .app-container {
+            display: flex;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 320px;
+            background: linear-gradient(180deg, #1a1d35 0%, #0f1123 100%);
+            border-right: 1px solid #2d3250;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            border-bottom: 1px solid #2d3250;
+        }
+
+        .sidebar-header h1 {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .sidebar-header p {
+            font-size: 13px;
+            color: #9ca3af;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-top: 8px;
+            margin-right: 6px;
+        }
+
+        .badge-success {
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .badge-info {
+            background: rgba(59, 130, 246, 0.15);
+            color: #3b82f6;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+        }
+
+        .sidebar-content {
+            flex: 1;
             padding: 20px;
         }
 
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 24px 32px;
-            margin-bottom: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        .control-section {
+            margin-bottom: 28px;
         }
 
-        h1 {
-            font-size: 32px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 8px;
-        }
-
-        .subtitle {
-            color: #666;
-            font-size: 16px;
-        }
-
-        .main-content {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 20px;
-        }
-
-        .sidebar {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 16px;
-            padding: 24px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            height: fit-content;
-        }
-
-        .map-container {
-            background: white;
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-            position: relative;
-        }
-
-        #map {
-            height: 700px;
-            width: 100%;
-        }
-
-        .control-group {
-            margin-bottom: 24px;
-        }
-
-        .control-group h3 {
-            font-size: 14px;
+        .control-section h3 {
+            font-size: 12px;
             font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #667eea;
-            margin-bottom: 12px;
+            letter-spacing: 0.8px;
+            color: #6366f1;
+            margin-bottom: 14px;
         }
 
+        /* Layer Control */
+        .layer-item {
+            background: rgba(45, 50, 80, 0.4);
+            border: 1px solid #2d3250;
+            border-radius: 10px;
+            padding: 14px;
+            margin-bottom: 10px;
+            transition: all 0.2s ease;
+        }
+
+        .layer-item:hover {
+            background: rgba(45, 50, 80, 0.6);
+            border-color: #3d4270;
+        }
+
+        .layer-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 10px;
+        }
+
+        .layer-checkbox {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #6366f1;
+        }
+
+        .layer-label {
+            flex: 1;
+            font-size: 14px;
+            font-weight: 500;
+            color: #e4e4e7;
+            cursor: pointer;
+        }
+
+        .layer-icon {
+            font-size: 18px;
+        }
+
+        /* Opacity Slider */
+        .opacity-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .opacity-label {
+            font-size: 11px;
+            color: #9ca3af;
+            min-width: 60px;
+        }
+
+        .opacity-slider {
+            flex: 1;
+            height: 4px;
+            border-radius: 2px;
+            background: #2d3250;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .opacity-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
+        }
+
+        .opacity-slider::-moz-range-thumb {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: #6366f1;
+            cursor: pointer;
+            border: none;
+        }
+
+        /* Buttons */
         .btn {
             width: 100%;
             padding: 12px 16px;
             border: none;
             border-radius: 8px;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             margin-bottom: 8px;
             display: flex;
             align-items: center;
             gap: 8px;
+            justify-content: center;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
             color: white;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
         }
 
         .btn-secondary {
-            background: #f3f4f6;
-            color: #333;
+            background: rgba(45, 50, 80, 0.6);
+            color: #e4e4e7;
+            border: 1px solid #2d3250;
         }
 
         .btn-secondary:hover {
-            background: #e5e7eb;
+            background: rgba(45, 50, 80, 0.8);
+            border-color: #3d4270;
         }
 
-        .stats {
+        /* Stats */
+        .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 16px;
+            gap: 10px;
+            margin-top: 14px;
         }
 
         .stat-card {
-            background: #f9fafb;
-            padding: 16px;
+            background: rgba(45, 50, 80, 0.4);
+            border: 1px solid #2d3250;
+            padding: 14px;
             border-radius: 8px;
             text-align: center;
         }
@@ -142,154 +235,190 @@
         .stat-value {
             font-size: 24px;
             font-weight: 700;
-            color: #667eea;
+            color: #6366f1;
         }
 
         .stat-label {
-            font-size: 12px;
-            color: #666;
+            font-size: 11px;
+            color: #9ca3af;
             margin-top: 4px;
         }
 
+        /* Map Container */
+        .map-container {
+            flex: 1;
+            position: relative;
+        }
+
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Legend */
         .legend {
-            background: white;
-            padding: 16px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             position: absolute;
-            bottom: 20px;
-            right: 20px;
+            bottom: 24px;
+            right: 24px;
+            background: rgba(26, 29, 53, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid #2d3250;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            max-width: 220px;
             z-index: 1000;
-            max-width: 200px;
         }
 
         .legend h4 {
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 600;
             margin-bottom: 12px;
+            color: #fff;
         }
 
         .legend-item {
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
             margin-bottom: 8px;
             font-size: 12px;
+            color: #e4e4e7;
         }
 
         .legend-color {
             width: 16px;
             height: 16px;
             border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .badge {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+        /* Mobile Toggle */
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2000;
+            background: rgba(26, 29, 53, 0.95);
+            border: 1px solid #2d3250;
+            padding: 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            color: #fff;
         }
 
-        .badge-success {
-            background: #d1fae5;
-            color: #065f46;
-        }
-
-        .badge-info {
-            background: #dbeafe;
-            color: #1e40af;
-        }
-
-        @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-            
+        /* Responsive */
+        @media (max-width: 768px) {
             .sidebar {
-                order: 2;
+                position: fixed;
+                left: 0;
+                top: 0;
+                height: 100vh;
+                z-index: 1500;
+                transform: translateX(-100%);
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .mobile-toggle {
+                display: block;
+            }
+
+            .legend {
+                bottom: 80px;
+                right: 12px;
+                max-width: 180px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🗺️ GeoAgent Demo</h1>
-            <p class="subtitle">Yapay Zeka Destekli İnteraktif Harita ve Coğrafi Analiz Platformu</p>
-            <div style="margin-top: 12px;">
-                <span class="badge badge-success">✓ Canlı</span>
-                <span class="badge badge-info">AI Destekli</span>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h1>🗺️ GeoAgent Demo</h1>
+                <p>Yapay Zeka Destekli İnteraktif Harita</p>
+                <div>
+                    <span class="badge badge-success">✓ Canlı</span>
+                    <span class="badge badge-info">AI Destekli</span>
+                </div>
             </div>
-        </header>
 
-        <div class="main-content">
-            <aside class="sidebar">
-                <div class="control-group">
+            <div class="sidebar-content">
+                <!-- Katman Kontrolü -->
+                <div class="control-section">
+                    <h3>🗺️ Katmanlar</h3>
+                    
+                    <div class="layer-item">
+                        <div class="layer-header">
+                            <input type="checkbox" class="layer-checkbox" id="layer-sentinel" onchange="toggleLayer('sentinel')">
+                            <label class="layer-label" for="layer-sentinel">
+                                <span class="layer-icon">🛰️</span> Sentinel-2 (AWS)
+                            </label>
+                        </div>
+                        <div class="opacity-control">
+                            <span class="opacity-label">Şeffaflık</span>
+                            <input type="range" class="opacity-slider" min="0" max="100" value="90" 
+                                   oninput="updateOpacity('sentinel', this.value)">
+                            <span class="opacity-label" id="opacity-sentinel">90%</span>
+                        </div>
+                    </div>
+
+                    <div class="layer-item">
+                        <div class="layer-header">
+                            <input type="checkbox" class="layer-checkbox" id="layer-metro" onchange="toggleLayer('metro')">
+                            <label class="layer-label" for="layer-metro">
+                                <span class="layer-icon">🚇</span> Metro Buffer (500m)
+                            </label>
+                        </div>
+                        <div class="opacity-control">
+                            <span class="opacity-label">Şeffaflık</span>
+                            <input type="range" class="opacity-slider" min="0" max="100" value="40" 
+                                   oninput="updateOpacity('metro', this.value)">
+                            <span class="opacity-label" id="opacity-metro">40%</span>
+                        </div>
+                    </div>
+
+                    <div class="layer-item">
+                        <div class="layer-header">
+                            <input type="checkbox" class="layer-checkbox" id="layer-parks" onchange="toggleLayer('parks')">
+                            <label class="layer-label" for="layer-parks">
+                                <span class="layer-icon">🌳</span> Yeşil Alanlar
+                            </label>
+                        </div>
+                        <div class="opacity-control">
+                            <span class="opacity-label">Şeffaflık</span>
+                            <input type="range" class="opacity-slider" min="0" max="100" value="50" 
+                                   oninput="updateOpacity('parks', this.value)">
+                            <span class="opacity-label" id="opacity-parks">50%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Önemli Noktalar -->
+                <div class="control-section">
                     <h3>📍 Önemli Noktalar</h3>
-                    <button class="btn btn-primary" onclick="addTaksim()">
+                    <button class="btn btn-secondary" onclick="addTaksim()">
                         🏛️ Taksim Meydanı
                     </button>
-                    <button class="btn btn-primary" onclick="addGalatasaray()">
+                    <button class="btn btn-secondary" onclick="addGalatasaray()">
                         ⚽ Galatasaray Stadı
                     </button>
-                    <button class="btn btn-primary" onclick="addBogazKoprusu()">
+                    <button class="btn btn-secondary" onclick="addBogazKoprusu()">
                         🌉 Boğaz Köprüsü
                     </button>
-                    <button class="btn btn-primary" onclick="addSultanahmet()">
+                    <button class="btn btn-secondary" onclick="addSultanahmet()">
                         🕌 Sultanahmet
                     </button>
                 </div>
 
-                <div class="control-group">
-                    <h3>🛰️ Uydu Görüntüleri</h3>
-                    <button class="btn btn-primary" onclick="showSentinel2()">
-                        🛰️ Sentinel-2 (AWS)
-                    </button>
-                    <button class="btn btn-secondary" onclick="showSatelliteLayer(2024)">
-                        📅 2024 Görüntüsü
-                    </button>
-                    <button class="btn btn-secondary" onclick="showSatelliteLayer(2023)">
-                        📅 2023 Görüntüsü
-                    </button>
-                    <button class="btn btn-secondary" onclick="showSatelliteLayer(2022)">
-                        📅 2022 Görüntüsü
-                    </button>
-                    <button class="btn btn-secondary" onclick="showSatelliteLayer(2020)">
-                        📅 2020 Görüntüsü
-                    </button>
-                    <button class="btn btn-primary" onclick="compareYears()">
-                        🔄 Yılları Karşılaştır
-                    </button>
-                </div>
-
-                <div class="control-group">
-                    <h3>🌳 NDVI Analizi</h3>
-                    <button class="btn btn-secondary" onclick="showNDVI()">
-                        📊 Yeşil Alan Değişimi
-                    </button>
-                    <button class="btn btn-secondary" onclick="showUrbanGrowth()">
-                        🏗️ Şehirleşme Analizi
-                    </button>
-                </div>
-
-                <div class="control-group">
-                    <h3>🔍 Analiz Araçları</h3>
-                    <button class="btn btn-secondary" onclick="showMetroBuffer()">
-                        🚇 Metro İstasyonları (500m)
-                    </button>
-                    <button class="btn btn-secondary" onclick="showParks()">
-                        🌳 Yeşil Alanlar
-                    </button>
-                    <button class="btn btn-secondary" onclick="showTraffic()">
-                        🚗 Trafik Yoğunluğu
-                    </button>
-                </div>
-
-                <div class="control-group">
-                    <h3>🎨 Harita Görünümü</h3>
+                <!-- Harita Görünümü -->
+                <div class="control-section">
+                    <h3>🎨 Harita Stili</h3>
                     <button class="btn btn-secondary" onclick="changeBasemap('streets')">
                         🗺️ Sokak Haritası
                     </button>
@@ -301,9 +430,10 @@
                     </button>
                 </div>
 
-                <div class="control-group">
+                <!-- İstatistikler -->
+                <div class="control-section">
                     <h3>📊 İstatistikler</h3>
-                    <div class="stats">
+                    <div class="stats-grid">
                         <div class="stat-card">
                             <div class="stat-value" id="markerCount">0</div>
                             <div class="stat-label">Marker</div>
@@ -314,27 +444,33 @@
                         </div>
                     </div>
                 </div>
-            </aside>
+            </div>
+        </aside>
 
-            <div class="map-container">
-                <div id="map"></div>
-                
-                <div class="legend">
-                    <h4>Katman Açıklaması</h4>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #ef4444;"></div>
-                        <span>Önemli Noktalar</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #3b82f6;"></div>
-                        <span>Metro Buffer (500m)</span>
-                    </div>
-                    <div class="legend-item">
-                        <div class="legend-color" style="background: #10b981;"></div>
-                        <span>Yeşil Alanlar</span>
-                    </div>
+        <!-- Map -->
+        <div class="map-container">
+            <div id="map"></div>
+            
+            <div class="legend">
+                <h4>Katman Açıklaması</h4>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #ef4444;"></div>
+                    <span>Önemli Noktalar</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #3b82f6;"></div>
+                    <span>Metro Buffer</span>
+                </div>
+                <div class="legend-item">
+                    <div class="legend-color" style="background: #10b981;"></div>
+                    <span>Yeşil Alanlar</span>
                 </div>
             </div>
+        </div>
+
+        <!-- Mobile Toggle -->
+        <div class="mobile-toggle" onclick="toggleSidebar()">
+            ☰
         </div>
     </div>
 
@@ -360,6 +496,13 @@
         
         basemaps.streets.addTo(map);
         
+        // Layer storage
+        const layers = {
+            sentinel: null,
+            metro: [],
+            parks: []
+        };
+        
         let markerCount = 0;
         let layerCount = 1;
         const markers = [];
@@ -367,6 +510,103 @@
         function updateStats() {
             document.getElementById('markerCount').textContent = markerCount;
             document.getElementById('layerCount').textContent = layerCount;
+        }
+        
+        function toggleLayer(layerName) {
+            const checkbox = document.getElementById(`layer-${layerName}`);
+            
+            if (checkbox.checked) {
+                if (layerName === 'sentinel') {
+                    showSentinel2();
+                } else if (layerName === 'metro') {
+                    showMetroBuffer();
+                } else if (layerName === 'parks') {
+                    showParks();
+                }
+            } else {
+                if (layerName === 'sentinel' && layers.sentinel) {
+                    map.removeLayer(layers.sentinel);
+                    layers.sentinel = null;
+                } else if (layerName === 'metro') {
+                    layers.metro.forEach(l => map.removeLayer(l));
+                    layers.metro = [];
+                } else if (layerName === 'parks') {
+                    layers.parks.forEach(l => map.removeLayer(l));
+                    layers.parks = [];
+                }
+                layerCount--;
+                updateStats();
+            }
+        }
+        
+        function updateOpacity(layerName, value) {
+            const opacity = value / 100;
+            document.getElementById(`opacity-${layerName}`).textContent = value + '%';
+            
+            if (layerName === 'sentinel' && layers.sentinel) {
+                layers.sentinel.setOpacity(opacity);
+            } else if (layerName === 'metro') {
+                layers.metro.forEach(l => l.setStyle({ fillOpacity: opacity * 0.2, opacity: opacity }));
+            } else if (layerName === 'parks') {
+                layers.parks.forEach(l => l.setStyle({ fillOpacity: opacity * 0.3, opacity: opacity }));
+            }
+        }
+        
+        function showSentinel2() {
+            if (layers.sentinel) return;
+            
+            layers.sentinel = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: '© Esri - Sentinel-2 (2024-09-25)',
+                opacity: 0.9
+            }).addTo(map);
+            
+            layerCount++;
+            updateStats();
+        }
+        
+        function showMetroBuffer() {
+            if (layers.metro.length > 0) return;
+            
+            const metroStations = [
+                [41.0369, 28.9850],
+                [41.0082, 28.9784],
+                [41.0255, 28.9744],
+            ];
+            
+            metroStations.forEach(coord => {
+                const circle = L.circle(coord, {
+                    color: '#3b82f6',
+                    fillColor: '#3b82f6',
+                    fillOpacity: 0.2,
+                    radius: 500
+                }).addTo(map).bindPopup('Metro İstasyonu - 500m Buffer');
+                
+                layers.metro.push(circle);
+            });
+            
+            layerCount++;
+            updateStats();
+        }
+        
+        function showParks() {
+            if (layers.parks.length > 0) return;
+            
+            const parks = [
+                [[41.0408, 28.9790], [41.0420, 28.9810], [41.0410, 28.9820], [41.0398, 28.9800]],
+            ];
+            
+            parks.forEach(coords => {
+                const polygon = L.polygon(coords, {
+                    color: '#10b981',
+                    fillColor: '#10b981',
+                    fillOpacity: 0.3
+                }).addTo(map).bindPopup('Yeşil Alan / Park');
+                
+                layers.parks.push(polygon);
+            });
+            
+            layerCount++;
+            updateStats();
         }
         
         function addMarker(lat, lng, title, icon = '📍') {
@@ -394,200 +634,16 @@
             addMarker(41.0086, 28.9802, 'Sultanahmet Camii', '🕌');
         }
         
-        function showMetroBuffer() {
-            // Metro istasyonları ve 500m buffer
-            const metroStations = [
-                [41.0369, 28.9850], // Taksim
-                [41.0082, 28.9784], // Şişhane
-                [41.0255, 28.9744], // Osmanbey
-            ];
-            
-            metroStations.forEach(coord => {
-                L.circle(coord, {
-                    color: '#3b82f6',
-                    fillColor: '#3b82f6',
-                    fillOpacity: 0.2,
-                    radius: 500
-                }).addTo(map).bindPopup('Metro İstasyonu - 500m Buffer');
-            });
-            
-            layerCount += metroStations.length;
-            updateStats();
-        }
-        
-        function showParks() {
-            // Örnek yeşil alanlar
-            const parks = [
-                [[41.0408, 28.9790], [41.0420, 28.9810], [41.0410, 28.9820], [41.0398, 28.9800]],
-            ];
-            
-            parks.forEach(coords => {
-                L.polygon(coords, {
-                    color: '#10b981',
-                    fillColor: '#10b981',
-                    fillOpacity: 0.3
-                }).addTo(map).bindPopup('Yeşil Alan / Park');
-            });
-            
-            layerCount++;
-            updateStats();
-        }
-        
-        function showTraffic() {
-            alert('🚗 Trafik katmanı: Gerçek zamanlı trafik verileri için API entegrasyonu gerekiyor.');
-        }
-        
         function changeBasemap(type) {
-            // Mevcut basemap'i kaldır
             Object.values(basemaps).forEach(layer => map.removeLayer(layer));
-            // Yeni basemap'i ekle
             basemaps[type].addTo(map);
         }
         
-        // Sentinel-2 (AWS) katmanı
-        function showSentinel2() {
-            // Sentinel-2 metadata
-            const metadata = {
-                id: 'S2B_35TPF_20240925_0_L2A',
-                date: '2024-09-25',
-                cloud: 0.59
-            };
-            
-            // Esri World Imagery (Sentinel-2 içerir)
-            const sentinel = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                attribution: `© Esri - Sentinel-2 (${metadata.date}, Bulut: ${metadata.cloud.toFixed(1)}%)`,
-                opacity: 0.9
-            }).addTo(map);
-            
-            // Bilgi popup'ı
-            L.popup()
-                .setLatLng([41.0, 28.95])
-                .setContent(`<b>🛰️ Sentinel-2 (AWS)</b><br><br>📅 Tarih: ${metadata.date}<br>☁️ Bulut: ${metadata.cloud.toFixed(1)}%<br><br>📊 Yüksek çözünürlüklü uydu verisi<br>Kaynak: AWS Open Data`)
-                .openOn(map);
-            
-            layerCount++;
-            updateStats();
-            
-            // Legend güncelle
-            const legend = document.querySelector('.legend');
-            legend.innerHTML = `
-                <h4>Sentinel-2 Katmanı</h4>
-                <div style="margin-top: 12px; font-size: 12px;">
-                    <b>📅 Tarih:</b> ${metadata.date}<br>
-                    <b>☁️ Bulut:</b> ${metadata.cloud.toFixed(1)}%<br>
-                    <b>📊 Çözünürlük:</b> 10m<br>
-                    <b>💾 Kaynak:</b> AWS Open Data
-                </div>
-            `;
+        function toggleSidebar() {
+            document.getElementById('sidebar').classList.toggle('active');
         }
         
-        // Uydu görüntüleri (Sentinel-2 benzeri)
-        let satelliteLayers = [];
-        
-        function showSatelliteLayer(year) {
-            // Önceki uydu katmanlarını temizle
-            satelliteLayers.forEach(layer => map.removeLayer(layer));
-            satelliteLayers = [];
-            
-            // Sentinel-2 benzeri görüntü (Esri World Imagery)
-            const satelliteLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-                attribution: `© Esri - ${year} Uydu Görüntüsü`,
-                opacity: 0.8
-            }).addTo(map);
-            
-            satelliteLayers.push(satelliteLayer);
-            
-            // Bilgi popup'ı
-            L.popup()
-                .setLatLng([41.0082, 28.9784])
-                .setContent(`<b>🛰️ ${year} Uydu Görüntüsü</b><br>Yüksek çözünürlüklü uydu verisi`)
-                .openOn(map);
-            
-            layerCount++;
-            updateStats();
-        }
-        
-        function compareYears() {
-            alert('🔄 Yıl Karşılaştırma Modu\n\n2020 vs 2024 karşılaştırması:\n\n🌳 Yeşil alan: %8 azalma\n🏗️ Şehirleşme: %12 artış\n🛣️ Yol ağı: %15 genişleme\n\nDetaylı analiz için NDVI Analizi butonunu kullanın.');
-        }
-        
-        function showNDVI() {
-            // NDVI (Normalized Difference Vegetation Index) görselizasyonu
-            const ndviData = [
-                // Yüksek NDVI (yoğun yeşil)
-                { coords: [[41.0408, 28.9790], [41.0420, 28.9810], [41.0410, 28.9820], [41.0398, 28.9800]], value: 0.8, color: '#10b981' },
-                // Orta NDVI
-                { coords: [[41.0300, 28.9700], [41.0320, 28.9720], [41.0310, 28.9730], [41.0290, 28.9710]], value: 0.5, color: '#84cc16' },
-                // Düşük NDVI (kentsel alan)
-                { coords: [[41.0200, 28.9600], [41.0220, 28.9620], [41.0210, 28.9630], [41.0190, 28.9610]], value: 0.2, color: '#fbbf24' },
-            ];
-            
-            ndviData.forEach(area => {
-                L.polygon(area.coords, {
-                    color: area.color,
-                    fillColor: area.color,
-                    fillOpacity: 0.5
-                }).addTo(map).bindPopup(`<b>NDVI Değeri: ${area.value}</b><br>Yeşil alan yoğunluğu`);
-            });
-            
-            // NDVI legend güncelle
-            const legend = document.querySelector('.legend');
-            legend.innerHTML = `
-                <h4>NDVI Analizi</h4>
-                <div class="legend-item">
-                    <div class="legend-color" style="background: #10b981;"></div>
-                    <span>Yüksek (0.6-1.0)</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background: #84cc16;"></div>
-                    <span>Orta (0.3-0.6)</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-color" style="background: #fbbf24;"></div>
-                    <span>Düşük (0.0-0.3)</span>
-                </div>
-                <div style="margin-top: 12px; font-size: 11px; color: #666;">
-                    <b>2020-2024 Değişim:</b><br>
-                    Yeşil alan: -8%<br>
-                    Kentsel alan: +12%
-                </div>
-            `;
-            
-            layerCount += ndviData.length;
-            updateStats();
-            
-            map.setView([41.0300, 28.9700], 12);
-        }
-        
-        function showUrbanGrowth() {
-            // Şehirleşme analizi
-            const urbanAreas = [
-                { year: 2020, coords: [[41.0100, 28.9500], [41.0150, 28.9550], [41.0120, 28.9580], [41.0080, 28.9530]], color: '#ef4444' },
-                { year: 2024, coords: [[41.0100, 28.9500], [41.0180, 28.9580], [41.0140, 28.9620], [41.0080, 28.9530]], color: '#dc2626' },
-            ];
-            
-            urbanAreas.forEach(area => {
-                L.polygon(area.coords, {
-                    color: area.color,
-                    fillColor: area.color,
-                    fillOpacity: 0.3,
-                    dashArray: area.year === 2020 ? '5, 5' : null
-                }).addTo(map).bindPopup(`<b>${area.year} Kentsel Alan</b><br>Şehirleşme sınırı`);
-            });
-            
-            // Bilgi popup'ı
-            L.popup()
-                .setLatLng([41.0120, 28.9550])
-                .setContent(`<b>🏗️ Şehirleşme Analizi</b><br><br>📈 2020-2024 Değişim:<br>Kentsel alan: +12%<br>Yeni yapılaşma: 450 hektar`)
-                .openOn(map);
-            
-            layerCount += urbanAreas.length;
-            updateStats();
-            
-            map.setView([41.0120, 28.9550], 12);
-        }
-        
-        // İlk marker'ı ekle
+        // İlk marker
         addTaksim();
     </script>
 </body>
