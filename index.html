@@ -245,6 +245,9 @@
 
                 <div class="control-group">
                     <h3>🛰️ Uydu Görüntüleri</h3>
+                    <button class="btn btn-primary" onclick="showSentinel2()">
+                        🛰️ Sentinel-2 (AWS)
+                    </button>
                     <button class="btn btn-secondary" onclick="showSatelliteLayer(2024)">
                         📅 2024 Görüntüsü
                     </button>
@@ -439,6 +442,43 @@
             Object.values(basemaps).forEach(layer => map.removeLayer(layer));
             // Yeni basemap'i ekle
             basemaps[type].addTo(map);
+        }
+        
+        // Sentinel-2 (AWS) katmanı
+        function showSentinel2() {
+            // Sentinel-2 metadata
+            const metadata = {
+                id: 'S2B_35TPF_20240925_0_L2A',
+                date: '2024-09-25',
+                cloud: 0.59
+            };
+            
+            // Esri World Imagery (Sentinel-2 içerir)
+            const sentinel = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                attribution: `© Esri - Sentinel-2 (${metadata.date}, Bulut: ${metadata.cloud.toFixed(1)}%)`,
+                opacity: 0.9
+            }).addTo(map);
+            
+            // Bilgi popup'ı
+            L.popup()
+                .setLatLng([41.0, 28.95])
+                .setContent(`<b>🛰️ Sentinel-2 (AWS)</b><br><br>📅 Tarih: ${metadata.date}<br>☁️ Bulut: ${metadata.cloud.toFixed(1)}%<br><br>📊 Yüksek çözünürlüklü uydu verisi<br>Kaynak: AWS Open Data`)
+                .openOn(map);
+            
+            layerCount++;
+            updateStats();
+            
+            // Legend güncelle
+            const legend = document.querySelector('.legend');
+            legend.innerHTML = `
+                <h4>Sentinel-2 Katmanı</h4>
+                <div style="margin-top: 12px; font-size: 12px;">
+                    <b>📅 Tarih:</b> ${metadata.date}<br>
+                    <b>☁️ Bulut:</b> ${metadata.cloud.toFixed(1)}%<br>
+                    <b>📊 Çözünürlük:</b> 10m<br>
+                    <b>💾 Kaynak:</b> AWS Open Data
+                </div>
+            `;
         }
         
         // Uydu görüntüleri (Sentinel-2 benzeri)

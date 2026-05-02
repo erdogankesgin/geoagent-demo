@@ -1,0 +1,9 @@
+{
+  "id": "S2B_35TPF_20240925_0_L2A",
+  "date": "2024-09-25",
+  "cloud": 0.587646,
+  "visual_url": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/35/T/PF/2024/9/S2B_35TPF_20240925_0_L2A/TCI.tif",
+  "red_url": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/35/T/PF/2024/9/S2B_35TPF_20240925_0_L2A/B04.tif",
+  "green_url": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/35/T/PF/2024/9/S2B_35TPF_20240925_0_L2A/B03.tif",
+  "blue_url": "https://sentinel-cogs.s3.us-west-2.amazonaws.com/sentinel-s2-l2a-cogs/35/T/PF/2024/9/S2B_35TPF_20240925_0_L2A/B02.tif"
+}
